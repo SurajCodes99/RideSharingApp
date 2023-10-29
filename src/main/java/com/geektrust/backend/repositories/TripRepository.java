@@ -27,15 +27,6 @@ public class TripRepository implements ITripRepository{
     }
 
     @Override
-    public void delete(Trip entity) {}
-
-    @Override
-    public void deleteById(String id) {}
-
-    @Override
-    public long count() { return 0; }
-
-    @Override
     public Trip getTripDetails(String tripId) {
         Trip currentTrip = tripMap.get(tripId);
         return currentTrip;

@@ -13,12 +13,5 @@ public class Constants {
     public static final Double SERVICETAX = 1.2;
     public static final Double MAX_RADIUS = 5.0;
     public static final Integer MAX_DRIVER_COUNT = 5;
-    
-    public static final String ADD_DRIVER_COMMAND = "ADD_DRIVER";
-    public static final String ADD_RIDER_COMMAND = "ADD_RIDER";
-    public static final String BILL_COMMAND = "BILL";
-    public static final String MATCH_COMMAND = "MATCH";
-    public static final String START_RIDE_COMMAND = "START_RIDE";
-    public static final String STOP_RIDE_COMMAND = "STOP_RIDE";
-
+    public static final Object NULL = null;
 }

@@ -18,9 +18,6 @@ public class StartRideCommand implements ICommand{
 
     @Override
     public void execute(List<String> tokens) {
-        String command = tokens.get(Constants.ZERO);
-        if(command.equals(Constants.START_RIDE_COMMAND)){
-
             String rideId = tokens.get(Constants.ONE);
             int driverSelection = Integer.parseInt(tokens.get(Constants.TWO));
             String riderId = tokens.get(Constants.THREE);
@@ -33,7 +30,5 @@ public class StartRideCommand implements ICommand{
             else{
                 System.out.println("RIDE_STARTED " + startedTrip.getTripId());
             }
-        }
     }
-    
 }

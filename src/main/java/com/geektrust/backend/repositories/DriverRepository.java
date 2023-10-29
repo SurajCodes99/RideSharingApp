@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.geektrust.backend.entities.Driver;
-import com.geektrust.backend.entities.RideStatus;
 
 public class DriverRepository implements IDriverRepository{
     HashMap<String, Driver> driverMap; 
@@ -21,7 +20,6 @@ public class DriverRepository implements IDriverRepository{
 
         Driver newDriver = new Driver(id, xCoordinate, yCoordinate);
         driverMap.put(id, newDriver);
-        newDriver.setDriverStatus(RideStatus.WAITING);
 
         return newDriver;
     }
@@ -36,14 +34,6 @@ public class DriverRepository implements IDriverRepository{
     @Override
     public boolean existsById(String id) { return driverMap.containsKey(id);}
 
-    @Override
-    public void delete(Driver entity) {}
-
-    @Override
-    public void deleteById(String id) {}
-
-    @Override
-    public long count() {return 0; }
     @Override
     public Driver getDriverDetails(String driverId) {
         Driver currentDriver = driverMap.get(driverId);

@@ -13,13 +13,10 @@ public class AddDriverCommand implements ICommand{
 
     @Override
     public void execute(List<String> tokens) {
-        if(tokens.get(Constants.ZERO).equals(Constants.ADD_DRIVER_COMMAND)){
             String driverId = tokens.get(Constants.ONE);
             int xCoordinate = Integer.parseInt(tokens.get(Constants.TWO));
             int yCoordinate = Integer.parseInt(tokens.get(Constants.THREE));
-
             driverService.addDriver(driverId, xCoordinate, yCoordinate);
-        }
     }
     
 }

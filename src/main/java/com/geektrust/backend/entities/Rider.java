@@ -1,6 +1,10 @@
 package com.geektrust.backend.entities;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import com.geektrust.backend.constants.Constants;
 
 public class Rider {
     private final String riderId;
@@ -9,15 +13,11 @@ public class Rider {
     private RideStatus riderStatus;
     private List<Driver> matchedDrivers;
 
-    public Rider(Rider rider) {
-        this(rider.riderId, rider.xCoordinate, rider.yCoordinate);
-        this.riderStatus = RideStatus.WAITING;
-    }
-
     public Rider(String riderId, double xCoordinate, double yCoordinate) {
         this.riderId = riderId;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+        this.matchedDrivers = new ArrayList<>();
         this.riderStatus = RideStatus.WAITING;
     }
 
@@ -37,15 +37,24 @@ public class Rider {
         return riderStatus;
     }
 
-    public void setRiderStatus(RideStatus riderStatus) {
-        this.riderStatus = riderStatus;
-    }
-
     public List<Driver> getMatchedDrivers() {
         return matchedDrivers;
     }
 
-    public void setMatchedDrivers(List<Driver> matchedDrivers) {
-        this.matchedDrivers = matchedDrivers;
+    public void setMatchedDrivers(List<Driver> driversInRadius) {
+        Set<Driver> matchedDriversSet = new LinkedHashSet<>();
+        for(int i = Constants.ZERO; i <= Constants.MAX_DRIVER_COUNT && i < driversInRadius.size() ; i++) {
+            if(driversInRadius.get(i).getDriverStatus() == RideStatus.WAITING) 
+                matchedDriversSet.add(driversInRadius.get(i));
+        }
+        this.matchedDrivers = List.copyOf(matchedDriversSet);
+    }
+
+    public void setRiderStatusAsStarted() {
+        this.riderStatus = RideStatus.STARTED;
+    }
+
+    public void  riderStatusWaiting(){
+        this.riderStatus = RideStatus.WAITING;
     }
 }

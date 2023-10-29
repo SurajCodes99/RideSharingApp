@@ -13,7 +13,6 @@ public class MatchRiderCommand implements ICommand{
     }
     @Override
     public void execute(List<String> tokens) {
-        if(tokens.get(Constants.ZERO).equals(Constants.MATCH_COMMAND)){
             String riderId = tokens.get(Constants.ONE);
 
             List<Driver> driversInRadius = driverService.driversInRadius(riderId);
@@ -30,7 +29,5 @@ public class MatchRiderCommand implements ICommand{
             for(Driver driver : driversInRadius) output += driver.getDriverId() + " ";
             output = output.substring(Constants.ZERO, output.length() - Constants.ONE);
             System.out.println(output);
-        }
     }
-    
 }

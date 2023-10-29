@@ -38,14 +38,6 @@ public class RiderRepository implements IRiderRepository{
     }
 
     @Override
-    public void delete(Rider entity) {}
-
-    @Override
-    public void deleteById(String id) {}
-
-    @Override
-    public long count() { return 0;}
-    @Override
     public Rider getRiderDetails(String riderId) {
         Rider currentRider = riderMap.get(riderId);
         return currentRider;

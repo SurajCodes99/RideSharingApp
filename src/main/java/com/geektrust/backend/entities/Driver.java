@@ -6,11 +6,6 @@ public class Driver {
     private final double yCoordinate;
     private RideStatus driverStatus;
 
-    public Driver(Driver newDriver){
-        this(newDriver.driverId, newDriver.xCoordinate, newDriver.yCoordinate);
-        this.driverStatus = RideStatus.WAITING;
-    }
-
     public Driver(String driverId, double xCoordinate, double yCoordinate){
         this.driverId = driverId;
         this.xCoordinate = xCoordinate;
@@ -34,7 +29,11 @@ public class Driver {
         return driverStatus;
     }
 
-    public void setDriverStatus(RideStatus driverStatus) {
-        this.driverStatus = driverStatus;
+    public void startRide() {
+        this.driverStatus = RideStatus.STARTED;
+    }
+
+    public void endRide() {
+        this.driverStatus = RideStatus.WAITING;
     }
 }

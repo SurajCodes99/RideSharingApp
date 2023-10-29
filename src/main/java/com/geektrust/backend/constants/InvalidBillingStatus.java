@@ -1,8 +1,8 @@
 package com.geektrust.backend.constants;
 
 public enum InvalidBillingStatus {
-    INVALID_RIDE(-1.0), 
-    RIDE_NOT_COMPLETED(-2.0);
+    INVALID_RIDE(-(double)Constants.ONE), 
+    RIDE_NOT_COMPLETED(-(double)Constants.TWO);
 
     private final double val; 
     

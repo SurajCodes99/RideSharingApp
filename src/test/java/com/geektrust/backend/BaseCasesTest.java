@@ -56,6 +56,33 @@ class BaseCasesTest {
         Assertions.assertEquals(expectedOutput,outputStreamCaptor.toString().trim());
     }
 
+
+    @Test
+    public void sampleTest3() throws Exception{
+        // Arrange
+        List<String> arguments= new ArrayList<>(List.of("sample_input/SampleTestCases/input3.txt"));
+        String expectedOutput = "NO_DRIVERS_AVAILABLE\n" + 
+        "DRIVERS_MATCHED D1\n" +
+        "DRIVERS_MATCHED D2 D1\n" +
+        "DRIVERS_MATCHED D14 D15 D16 D1\n" +
+        "DRIVERS_MATCHED D15 D2 D1\n" +
+        "RIDE_STARTED RIDE-001\n" +
+        "DRIVERS_MATCHED D14 D16 D17 D1\n" + 
+        "RIDE_STOPPED RIDE-001\n" + 
+        "BILL RIDE-001 D15 327.20\n" +
+        "RIDE_STARTED RIDE-002\n" + 
+        "RIDE_STOPPED RIDE-002\n" +
+        "INVALID_RIDE\n" +
+        "BILL RIDE-002 D17 440.26\n" +
+        "INVALID_RIDE\n" +
+        "BILL RIDE-002 D17 440.26";
+
+        // Act   
+        App.runApplication(arguments);
+
+        // Assert
+        Assertions.assertEquals(expectedOutput,outputStreamCaptor.toString().trim());
+    }
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);

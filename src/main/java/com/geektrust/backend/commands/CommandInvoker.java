@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.geektrust.backend.exceptions.NoSuchCommandException;
 
 public class CommandInvoker {
     private static final Map<String, ICommand> commandMap = new HashMap<>();
@@ -20,12 +19,8 @@ public class CommandInvoker {
     }
 
     // Execute the registered Command
-    public void executeCommand(String commandName, List<String> tokens) throws NoSuchCommandException, IOException {
+    public void executeCommand(String commandName, List<String> tokens) throws IOException {
         ICommand command = get(commandName);
-        if(command == null){
-            // Handle Exception
-            throw new NoSuchCommandException();
-        }
         command.execute(tokens);
     }
 }

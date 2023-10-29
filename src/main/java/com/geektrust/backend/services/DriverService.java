@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import com.geektrust.backend.constants.Constants;
 import com.geektrust.backend.entities.Driver;
-import com.geektrust.backend.entities.RideStatus;
 import com.geektrust.backend.entities.Rider;
 import com.geektrust.backend.repositories.IDriverRepository;
 import com.geektrust.backend.repositories.IRiderRepository;
@@ -38,17 +37,13 @@ public class DriverService implements IDriverService{
             if(distance <= Constants.MAX_RADIUS) driversInRadius.add(driver);
         }
         
+        //To sort the drivers based on distance and name:
         sortByDistanceOrName(driversInRadius, currentRider);
-
-        List<Driver> nearestFiveDrivers = new ArrayList<>();
         
-        //A check is done to make sure that, only the available drivers are added to the list.
-        for(int i = 0; i <= Constants.MAX_DRIVER_COUNT && i < driversInRadius.size() ; i++) {
-            if(driversInRadius.get(i).getDriverStatus() == RideStatus.WAITING)
-            nearestFiveDrivers.add( driversInRadius.get(i) );
-        }
-        currentRider.setMatchedDrivers(nearestFiveDrivers);
-        return nearestFiveDrivers;
+        //A check is done to make sure that, only the available drivers are added to the list:
+        currentRider.setMatchedDrivers(driversInRadius);
+
+        return currentRider.getMatchedDrivers();
     }
 
     //A comparator to sort the drivers as per their distance. If they are equidistant from the customer, then sorted by name.
@@ -76,8 +71,8 @@ public class DriverService implements IDriverService{
             double currentDriverXCoordinate = driver.getxCoordinate();
             double currentDriverYCoordinate = driver.getyCoordinate();
 
-            double xDistance = Math.pow(currentRiderXCoordinate - currentDriverXCoordinate, 2);
-            double yDistance = Math.pow(currentRiderYCoordinate - currentDriverYCoordinate, 2);
+            double xDistance = Math.pow(currentRiderXCoordinate - currentDriverXCoordinate, Constants.TWO);
+            double yDistance = Math.pow(currentRiderYCoordinate - currentDriverYCoordinate, Constants.TWO);
 
             double distance = Math.sqrt(xDistance + yDistance);
             return distance;

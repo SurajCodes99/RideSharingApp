@@ -10,24 +10,15 @@ public class Trip {
     private Driver driver;
     private RideStatus rideStatus;
 
-    public Trip(String tripId, int tripAmount, double destinationXCoordinate,Driver driver,
-                double destinationYCoordinate, double timeTaken, Rider rider, RideStatus rideStatus) {
+    public Trip(String tripId, Driver driver, Rider rider, RideStatus riderStatus){
         this.tripId = tripId;
-        this.tripAmount = tripAmount;
-        this.destinationXCoordinate = destinationXCoordinate;
         this.driver = driver;
-        this.destinationYCoordinate = destinationYCoordinate;
-        this.timeTaken = timeTaken;
         this.rider = rider;
-        this.rideStatus = rideStatus;
+        this.rideStatus = riderStatus;
     }
 
     public String getTripId() {
         return tripId;
-    }
-
-    public void setTripId(String tripId) {
-        this.tripId = tripId;
     }
 
     public double getTripAmount() {
@@ -41,11 +32,6 @@ public class Trip {
     public double getDestinationXCoordinate() {
         return destinationXCoordinate;
     }
-
-    public void setDestinationXCoordinate(double destinationXCoordinate) {
-        this.destinationXCoordinate = destinationXCoordinate;
-    }
-
     
     public Driver getDriver() {
         return driver;
@@ -55,31 +41,28 @@ public class Trip {
         return destinationYCoordinate;
     }
 
-    public void setDestinationYCoordinate(double destinationYCoordinate) {
-        this.destinationYCoordinate = destinationYCoordinate;
-    }
-
     public double getTimeTaken() {
         return timeTaken;
-    }
-
-    public void setTimeTaken(double timeTaken) {
-        this.timeTaken = timeTaken;
     }
 
     public Rider getRider() {
         return rider;
     }
 
-    public void setRider(Rider rider) {
-        this.rider = rider;
-    }
-
     public RideStatus getRideStatus() {
         return rideStatus;
     }
 
-    public void setRideStatus(RideStatus rideStatus) {
-        this.rideStatus = rideStatus;
+    public void setRideAsCompleted() {
+        this.rideStatus = RideStatus.COMPLETED;
+    }
+
+    public void setDestinationCoordinates(double xCoordinate, double yCoordinate) {
+        this.destinationXCoordinate = xCoordinate;
+        this.destinationYCoordinate = yCoordinate;
+    }
+
+    public void setTimeTaken(double timeTaken) {
+        if(timeTaken != 0) this.timeTaken = timeTaken;
     }
 }
